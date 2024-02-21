@@ -52,7 +52,7 @@ public class OpenbankingApplication implements CommandLineRunner {
         jdbcTemplate.batchUpdate("INSERT INTO client(nom, prenom) VALUES (?, ?)", splitUpNames);
 
         log.info("Querying for customer records where nom = 'Josh':");
-        jdbcTemplate.query("SELECT id, nom, prenom FROM client WHERE nom = ?",(rs, rowNum) -> new Client(rs.getLong("id"), rs.getString("nom"), rs.getString("prenom")), "Josh")
+        jdbcTemplate.query("SELECT id, nom, prenom FROM client WHERE nom = ?",(rs, rowNum) -> new Client(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom")), "Josh")
                 .forEach(customer -> log.info(customer.toString()));
     }
 
