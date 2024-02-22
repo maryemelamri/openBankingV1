@@ -12,10 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Agence {
-    private int id;
+        private int id;
     private String adresse;
 
     @MappedCollection(idColumn = "agence_id", keyColumn = "agence_key")
     private List<Compte> comptes;
 
+    public Agence(int id, String adresse) {
+        this.id = id;
+        this.adresse = adresse;
+    }
 }

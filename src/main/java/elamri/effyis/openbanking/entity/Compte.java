@@ -32,6 +32,12 @@ public class Compte {
         this.client = client;
         this.montant = montant;
     }
+
+    public Compte(int id, String numeroCompte, double solde) {
+        this.numeroCompte = numeroCompte;
+        this.solde = solde;
+
+    }
 //one to many
   //  protected List<Operation> operations;
 }
