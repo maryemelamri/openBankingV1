@@ -32,38 +32,4 @@ public class Client {
     public String toString() {
         return String.format("Client [id=%d, firstName='%s', lastName='%s']", id, nom, prenom);
     }
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public List<Compte> getCompte() {
-        return compte;
-    }
-
-    public void setCompte(List<Compte> compte) {
-        this.compte = compte;
-    }
 }

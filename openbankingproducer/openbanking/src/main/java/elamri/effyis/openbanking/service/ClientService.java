@@ -2,18 +2,21 @@ package elamri.effyis.openbanking.service;
 
 import elamri.effyis.openbanking.entity.Client;
 import elamri.effyis.openbanking.repository.ClientRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
-
+@Slf4j
 public class ClientService {
     @Autowired
     private final ClientRepository clientRepository;
@@ -32,7 +35,8 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public Iterable<Client> findAllClients() {
+
+        public Iterable<Client> findAllClients() {
         String sql = "select * from client";
         RowMapper<Client> mapper = new RowMapper<Client>(){
             @Override

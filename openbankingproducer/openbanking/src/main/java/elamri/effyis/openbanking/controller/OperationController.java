@@ -9,16 +9,14 @@ import elamri.effyis.openbanking.service.CompteService;
 import elamri.effyis.openbanking.service.OperationService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.web.bind.annotation.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @RequestMapping("/operation")
+@Slf4j
 public class OperationController {
     @Autowired
     private OperationService operationService;
@@ -35,6 +33,7 @@ public class OperationController {
 
     @PostMapping(value = "/depotByNumeroCompte")
     public boolean depotByNumeroCompte(@RequestBody Compte compteCourant, @PathParam(value = "montant") double montant) {
+        log.info("depotByNumeroCompte: compteCourant={},montant={}", compteCourant.getNumeroCompte(),montant);
         return operationService.depotByNumeroCompte(compteCourant, montant);
     }
     @GetMapping("/allClients")
@@ -52,8 +51,8 @@ public class OperationController {
     @GetMapping("/ClientById")
     public Client ClientById(@PathParam(value = "id") int id) {
         return clientService.findClientById(id) ;
-
     }
+
     @GetMapping("/allCompte")
     public Iterable<Compte> findAllAgence() {
          return compteService.findAll();

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 @Setter
@@ -12,7 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Agence {
-        private int id;
+    @Id
+    private int id;
     private String adresse;
 
     @MappedCollection(idColumn = "agence_id", keyColumn = "agence_key")
