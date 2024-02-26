@@ -1,21 +1,22 @@
 package elamri.effyis.openbanking.rmq;
 
 import java.io.Serializable;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@RequiredArgsConstructor
+import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
 @ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DemandeProducer implements Serializable {
-    private int id_compteTo;
-    private int id_compteFrom;
+    @Id
+    private long id_demande;
+    private long id_compte_to;
+    private int id_compte_from;
     private double montant;
     private String reason;
-
 
 }

@@ -1,9 +1,6 @@
 package elamri.effyis.openbanking.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.annotation.Id;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Agence {
     @Id
     private int id;

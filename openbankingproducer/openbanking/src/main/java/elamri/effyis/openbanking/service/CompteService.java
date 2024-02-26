@@ -44,10 +44,10 @@ public class CompteService {
         temp.update("update ACCOUNT set BALANCE=BALANCE+? where ID=?", amount, toAccountId);
     }
 
-    public Compte create(Compte compte) {
-        if (Objects.isNull(compte)) return null;
-        return compteRepository.save(compte);
-    }
+//    public Compte create(Compte compte) {
+//        if (Objects.isNull(compte)) return null;
+//        return compteRepository.save(compte);
+//    }
     public Compte findCompteById(int id) {
         return compteRepository.findById(id);
     }

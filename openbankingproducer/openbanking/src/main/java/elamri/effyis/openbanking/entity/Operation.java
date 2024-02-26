@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Operation {
     @Id
     private Integer id;

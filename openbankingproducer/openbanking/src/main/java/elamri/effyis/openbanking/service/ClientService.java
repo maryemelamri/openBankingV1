@@ -22,6 +22,7 @@ public class ClientService {
     private final ClientRepository clientRepository;
     @Autowired
     JdbcTemplate temp;
+
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
@@ -31,14 +32,15 @@ public class ClientService {
         if (Objects.isNull(client)) return null;
         return clientRepository.save(client);
     }
+
     public Client findClientById(int id) {
         return clientRepository.findById(id);
     }
 
 
-        public Iterable<Client> findAllClients() {
+    public Iterable<Client> findAllClients() {
         String sql = "select * from client";
-        RowMapper<Client> mapper = new RowMapper<Client>(){
+        RowMapper<Client> mapper = new RowMapper<Client>() {
             @Override
             public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Client a = new Client();
@@ -48,13 +50,13 @@ public class ClientService {
                 return a;
             }
         };
-        List<Client> cliens = temp.query(sql,mapper);
+        List<Client> cliens = temp.query(sql, mapper);
         return cliens;
     }
 
     public Client updateClient(Client client) {
         if (Objects.isNull(client)) return null;
-       return clientRepository.save(client);
+        return clientRepository.save(client);
     }
 
     public boolean deleteClientById(Client client) {

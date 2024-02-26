@@ -3,6 +3,7 @@ package elamri.effyis.openbanking.controller;
 import elamri.effyis.openbanking.entity.Agence;
 import elamri.effyis.openbanking.entity.Client;
 import elamri.effyis.openbanking.entity.Compte;
+import elamri.effyis.openbanking.repository.CompteRepository;
 import elamri.effyis.openbanking.repositoryPrefered.repository.AgenceRepository;
 import elamri.effyis.openbanking.service.ClientService;
 import elamri.effyis.openbanking.service.CompteService;
@@ -18,6 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/operation")
 @Slf4j
 public class OperationController {
+
+    @Autowired
+    CompteRepository compteRepository;
     @Autowired
     private OperationService operationService;
     @Autowired
@@ -26,9 +30,12 @@ public class OperationController {
     CompteService compteService;
     @Autowired
     private ClientService clientService;
+
+
     @PostMapping(value = "/createCompte")
-    public Compte createCompte(Client client, Agence agence) {
-        return operationService.createCompte(client, agence);
+    public Compte createCompte(@RequestBody Compte compte) {
+
+        return compteRepository.save(compte);
     }
 
     @PostMapping(value = "/depotByNumeroCompte")
@@ -36,9 +43,17 @@ public class OperationController {
         log.info("depotByNumeroCompte: compteCourant={},montant={}", compteCourant.getNumeroCompte(),montant);
         return operationService.depotByNumeroCompte(compteCourant, montant);
     }
+
     @GetMapping("/allClients")
     public Iterable<Client> findAllClients() {
       return clientService.findAllClients();
+
+    }
+
+
+    @GetMapping("/allComptes")
+    public Iterable<Compte> findAllComptes() {
+        return compteRepository.findAll();
 
     }
     @GetMapping("/AgenceById")
