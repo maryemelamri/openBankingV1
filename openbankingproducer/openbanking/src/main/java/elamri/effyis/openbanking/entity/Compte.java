@@ -25,14 +25,13 @@ public class Compte {
 
     private Agence agence;
     private Client client;
-    private Double montant;
+
     @Builder
-    public Compte( String numeroCompte, double solde, Agence agence, Client client,Double montant) {
+    public Compte( String numeroCompte, double solde, Agence agence, Client client) {
         this.numeroCompte = numeroCompte;
         this.solde = solde;
         this.agence = agence;
         this.client = client;
-        this.montant = montant;
     }
 
     public Compte(int id, String numeroCompte, double solde) {

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/operation")
@@ -34,15 +36,10 @@ public class OperationController {
 
     @PostMapping(value = "/createCompte")
     public Compte createCompte(@RequestBody Compte compte) {
-
         return compteRepository.save(compte);
     }
 
-    @PostMapping(value = "/depotByNumeroCompte")
-    public boolean depotByNumeroCompte(@RequestBody Compte compteCourant, @PathParam(value = "montant") double montant) {
-        log.info("depotByNumeroCompte: compteCourant={},montant={}", compteCourant.getNumeroCompte(),montant);
-        return operationService.depotByNumeroCompte(compteCourant, montant);
-    }
+
 
     @GetMapping("/allClients")
     public Iterable<Client> findAllClients() {
@@ -61,6 +58,13 @@ public class OperationController {
         return agenceRepository.findById(id) ;
 
     }
+
+    @GetMapping("/AgenceByAdress")
+    public List<Agence> AgenceByAdress(@PathParam(value = "adresse") String adresse) {
+        return agenceRepository.getAgenceByadresse(adresse) ;
+
+    }
+
 
     //didnt work why??
     @GetMapping("/ClientById")

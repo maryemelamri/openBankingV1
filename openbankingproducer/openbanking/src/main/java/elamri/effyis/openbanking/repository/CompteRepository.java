@@ -62,7 +62,6 @@ public class CompteRepository {
                 .solde(resultSet.getDouble(3))
                 .agence(new Agence(resultSet.getInt(1), resultSet.getString(2)))
                 .client(new Client(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)))
-                .montant(resultSet.getDouble(4))
                 .build();
     }
 

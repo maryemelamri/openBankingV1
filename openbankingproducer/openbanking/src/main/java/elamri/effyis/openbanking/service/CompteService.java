@@ -31,7 +31,6 @@ public class CompteService {
                 Compte a = new Compte();
                 a.setId(rs.getInt(1)); // Supposons que l'ID est dans la première colonne
                 a.setSolde(rs.getDouble(2)); // Supposons que le nom est dans la deuxième colonne
-                a.setMontant(rs.getDouble(3)); // Supposons que la technologie est dans la troisième colonne
                 return a;
             }
         };

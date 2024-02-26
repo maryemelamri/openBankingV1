@@ -1,4 +1,13 @@
-FROM ubuntu:latest
-LABEL authors="casper"
+FROM maven:3.2.2-openjdk-17 AS builder
+WORKDIR /app
+COPY ./src ./src
+COPY ./pom.xml .
+RUN mvn clean package
 
-ENTRYPOINT ["top", "-b"]
+FROM openjdk:17-jdk-alpine
+
+
+VOLUME /tmp
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} offre-service.jar
+ENTRYPOINT ["java","-jar","/openBakingProducer.jar"]
