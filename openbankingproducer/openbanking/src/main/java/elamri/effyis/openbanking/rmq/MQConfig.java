@@ -13,7 +13,7 @@ public class MQConfig {
     @Value("${demande.queue}")
     private String QUEUE;
 
-        @Value("${demande.exchange}")
+    @Value("${demande.exchange}")
     private String EXCHANGE ;
 
     @Value("${demande.route_key}")

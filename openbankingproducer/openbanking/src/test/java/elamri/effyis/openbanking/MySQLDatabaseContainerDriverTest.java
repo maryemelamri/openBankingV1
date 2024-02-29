@@ -25,9 +25,9 @@ public class MySQLDatabaseContainerDriverTest {
 
             try (Connection connection = driver.connect(url, properties)) {
                 try (Statement statement = connection.createStatement()) {
-                    statement.execute("CREATE TABLE client (length_5_string CHAR(5))");
-                    statement.execute("INSERT INTO nom  VALUES ('Elamri')");
-                    statement.execute("INSERT INTO prenom VALUES ('Mary')");
+                    statement.execute("CREATE TABLE client (nom CHAR(5))");
+                    statement.execute("INSERT INTO client  VALUES ('Ela')");
+                    statement.execute("INSERT INTO client VALUES ('Mary')");
 
                     // Check that maxRows is set
                     try (ResultSet resultSet = statement.executeQuery("SELECT * FROM client")) {
@@ -39,7 +39,7 @@ public class MySQLDatabaseContainerDriverTest {
                     // Check that pad with chars is set
                     try (ResultSet resultSet = statement.executeQuery("SELECT * FROM client")) {
                         assertThat(resultSet.next()).isTrue();
-                        assertThat(resultSet.getString(1)).isEqualTo("Elam  ");
+                        assertThat(resultSet.getString(1)).isEqualTo("Ela  ");
                     }
                 }
             }

@@ -6,7 +6,7 @@ RUN mvn clean package
 
 FROM openjdk:17-jdk-alpine
 
-EXPOSE 8888
+EXPOSE 8084
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} transactioncons.jar
