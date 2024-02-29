@@ -41,7 +41,7 @@ public class OperationService {
     public Iterable<Operation> findAll() {
         return operationRepository.findAll();
     }
-
+//a compelter
     public boolean retraitByNumeroCompte(Compte compteCourant, double montant) {
         if (!Objects.isNull(compteCourant)) {
             Compte compte = this.compteService.findByNumeroCompte(compteCourant.getNumeroCompte());
@@ -52,19 +52,6 @@ public class OperationService {
                     operationRepository.save(createOption);
                     return true;
                 }
-            }
-        }
-        return false;
-    }
-
-
-    public boolean depotByNumeroCompte(Compte compteCourant, double montant) {
-        if (!Objects.isNull(compteCourant)) {
-            Compte compte = this.compteService.findByNumeroCompte(compteCourant.getNumeroCompte());
-            if (!Objects.isNull(compte)) {
-                compte.setSolde(compte.getSolde() + montant);
-
-                return true;
             }
         }
         return false;
