@@ -1,7 +1,6 @@
 package elamri.effyis.openbanking.service;
 
 import elamri.effyis.openbanking.entity.Client;
-import elamri.effyis.openbanking.repository.ClientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,24 +17,9 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ClientService {
-    @Autowired
-    private final ClientRepository clientRepository;
+
     @Autowired
     JdbcTemplate temp;
-
-    @Autowired
-    public ClientService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
-
-    public Client create(Client client) {
-        if (Objects.isNull(client)) return null;
-        return clientRepository.save(client);
-    }
-
-    public Client findClientById(int id) {
-        return clientRepository.findById(id);
-    }
 
 
     public Iterable<Client> findAllClients() {
@@ -54,16 +38,6 @@ public class ClientService {
         return cliens;
     }
 
-    public Client updateClient(Client client) {
-        if (Objects.isNull(client)) return null;
-        return clientRepository.save(client);
-    }
 
-    public boolean deleteClientById(Client client) {
-        if (Objects.isNull(client)) return false;
-
-        clientRepository.delete(client);
-        return true;
-    }
 
 }

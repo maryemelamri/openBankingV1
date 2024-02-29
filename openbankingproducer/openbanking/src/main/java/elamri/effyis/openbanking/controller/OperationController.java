@@ -3,8 +3,9 @@ package elamri.effyis.openbanking.controller;
 import elamri.effyis.openbanking.entity.Agence;
 import elamri.effyis.openbanking.entity.Client;
 import elamri.effyis.openbanking.entity.Compte;
+import elamri.effyis.openbanking.entity.Operation;
 import elamri.effyis.openbanking.repository.CompteRepository;
-import elamri.effyis.openbanking.repositoryPrefered.repository.AgenceRepository;
+import elamri.effyis.openbanking.repository.AgenceRepository;
 import elamri.effyis.openbanking.service.ClientService;
 import elamri.effyis.openbanking.service.CompteService;
 import elamri.effyis.openbanking.service.OperationService;
@@ -24,27 +25,39 @@ public class OperationController {
 
     @Autowired
     CompteRepository compteRepository;
-    @Autowired
-    private OperationService operationService;
+
     @Autowired
     AgenceRepository agenceRepository;
     @Autowired
     CompteService compteService;
     @Autowired
     private ClientService clientService;
-
+    @Autowired
+    private OperationService operationService;
 
     @PostMapping(value = "/createCompte")
     public Compte createCompte(@RequestBody Compte compte) {
         return compteRepository.save(compte);
     }
 
+    @PostMapping(value = "/createOperation")
+    public Operation createOperation(@RequestBody Operation compte) {
+        return operationService.save(compte);
+    }
 
+    @PostMapping(value = "/viremantBetweenClientByNumeroCompte")
+    public Compte viremantBetweenClientByNumeroCompte(@RequestBody Compte compte) {
+         operationService.retraitByNumeroCompte(compte,compte.getSolde());
+        return compte;
+    }
 
     @GetMapping("/allClients")
     public Iterable<Client> findAllClients() {
       return clientService.findAllClients();
-
+    }
+ @GetMapping("/operations")
+    public Iterable<Operation> findAllOperation() {
+      return operationService.findAll();
     }
 
 
@@ -66,11 +79,11 @@ public class OperationController {
     }
 
 
-    //didnt work why??
-    @GetMapping("/ClientById")
-    public Client ClientById(@PathParam(value = "id") int id) {
-        return clientService.findClientById(id) ;
-    }
+//    //didnt work why??
+//    @GetMapping("/ClientById")
+//    public Client ClientById(@PathParam(value = "id") int id) {
+//        return clientService.findClientById(id) ;
+//    }
 
     @GetMapping("/allCompte")
     public Iterable<Compte> findAllAgence() {

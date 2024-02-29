@@ -9,5 +9,5 @@ FROM openjdk:17-jdk-alpine
 
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} offre-service.jar
-ENTRYPOINT ["java","-jar","/openBakingProducer.jar"]
+COPY ${JAR_FILE} openbakingroducer.jar
+ENTRYPOINT ["java","-jar","/openbakingroducer.jar"]

@@ -17,7 +17,6 @@ public class AgenceRepository  {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     public  List<Agence> getAgenceByadresse(String adresse) {
         String sql = "select * from agence where adresse= ? ";
         return jdbcTemplate.query(sql, new AgenceRowMapper(), adresse);

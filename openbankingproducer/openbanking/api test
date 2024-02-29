@@ -1,0 +1,19 @@
+http://localhost:8082/operation/createOperation
+{
+  "id": 1,
+  "code": "ABC123",
+  "compte": {
+    "numeroCompte": "123456789",
+    "solde": 1000.0,
+    "agence": {
+      "id": 1,
+      "nom": "Agence1"
+    },
+    "client": {
+      "id": 1,
+      "nom": "Client1",
+      "prenom": "John"
+    }
+  },
+  "montant": 500.0
+}

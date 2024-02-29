@@ -18,6 +18,7 @@ import java.io.Serializable;
 public class DemandeProducer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long id_demande;
     private long id_compte_to;
     private int id_compte_from;

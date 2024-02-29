@@ -3,12 +3,9 @@ package elamri.effyis.transaction.controller;
 import elamri.effyis.transaction.domain.DemandeProducer;
 import elamri.effyis.transaction.service.DemandeService;
 import jakarta.websocket.server.PathParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 @RestController
@@ -50,20 +47,15 @@ public class DemandeController {
 
 
     @GetMapping("/findbycompte/{id}")
-    public List<DemandeProducer> findPostByUserId(@PathVariable Long id) {
+    public List<DemandeProducer> findDemandeByCompteId(@PathVariable Long id) {
         return demandeService.findByCompteId(id);
-    }
-
-    @GetMapping("/findbyid/{id}")
-    public DemandeProducer findById(@PathVariable Long id) {
-        return demandeService.findById(id);
     }
 
 
     @GetMapping("/demande/id/")
     public ResponseEntity<DemandeProducer> findStudentById(@PathParam(value = "id") long id) {
-        var student = demandeService.findById(id);
-        return ResponseEntity.ok(student);
+        var demande = demandeService.findById(id);
+        return ResponseEntity.ok(demande);
     }
 
 

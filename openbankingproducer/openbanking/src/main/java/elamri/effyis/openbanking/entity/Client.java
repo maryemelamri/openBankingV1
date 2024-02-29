@@ -1,8 +1,5 @@
 package elamri.effyis.openbanking.entity;
 
-
-
-
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;

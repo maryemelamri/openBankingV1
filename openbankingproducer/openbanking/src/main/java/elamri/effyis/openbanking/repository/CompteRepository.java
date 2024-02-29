@@ -4,8 +4,8 @@ import elamri.effyis.openbanking.entity.Agence;
 import elamri.effyis.openbanking.entity.Client;
 import elamri.effyis.openbanking.entity.Compte;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -16,13 +16,10 @@ import java.util.List;
 public class CompteRepository {
     private final JdbcTemplate jdbcTemplate;
 
-
     @Autowired
     public CompteRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-
     public boolean exists(long id) {
         String sqlQuery = "select count(*) from compte where id = ?";
 
@@ -30,12 +27,17 @@ public class CompteRepository {
 
         return result == 1;
     }
-
     public Compte findById(int id) {
         String sqlQuery = "* " +
                 "from compte where id = ?";
 
         return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToCompte, id);
+    }
+
+
+    public Compte findByNumeroCompte(String numeroCompte) {
+        String sqlQuery = "SELECT * FROM compte WHERE numeroCompte = ?";
+        return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToCompte, numeroCompte);
     }
 
     public Compte save(Compte compte) {
